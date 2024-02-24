@@ -1,0 +1,24 @@
+<h1>List of Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Number</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each students}}
+      <tr>
+        <td>{{StudentNumber}}</td>
+        <td>{{FirstName}}</td>
+        <td>{{LastName}}</td>
+        <td>{{EmailAddress}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<a href="/students/new.hbs">Add New Student</a>

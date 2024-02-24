@@ -1,0 +1,19 @@
+<h1>Edit Student</h1>
+
+<form action="/students/{{student._id}}" method="post">
+  <label for="StudentNumber">Student Number:</label>
+  <input type="text" id="StudentNumber" name="StudentNumber" value="{{student.StudentNumber}}" required>
+
+  <label for="FirstName">First Name:</label>
+  <input type="text" id="FirstName" name="FirstName" value="{{student.FirstName}}" required>
+
+  <label for="LastName">Last Name:</label>
+  <input type="text" id="LastName" name="LastName" value="{{student.LastName}}" required>
+
+  <label for="EmailAddress">Email Address:</label>
+  <input type="email" id="EmailAddress" name="EmailAddress" value="{{student.EmailAddress}}" required>
+
+  <button type="submit">Update Student</button>
+</form>
+
+<a href="/students">Back to Students</a>
