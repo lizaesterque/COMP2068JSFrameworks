@@ -1,3 +1,42 @@
+const mongoose = require("mongoose");
+
+// Database connection
+const database = () => {
+  const connectionParams = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
+
+  try {
+    mongoose.connect(
+      "mongodb+srv://lizaesterque:Lizandra@cluster0.0im5keo.mongodb.net/Recipehub",
+      connectionParams
+    );
+    console.log("Database connected");
+  } catch (error) {
+    console.error(error);
+    console.log("Failed to connect to database");
+  }
+};
+
+// Call the database function to establish connection
+database();
+
+
+
+// Express initialization
+var express = require('express');
+var app = express();
+
+// require('./insertRecipes')(app); -> this was used to add recipes to the database
+
+app.listen(8000, () => {
+  console.log('Server is running on port 8000');
+});
+
+
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,7 +48,7 @@ var hbs = require('hbs');
 var indexRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 
-var app = express();
+// var app = express();
 
 
 
