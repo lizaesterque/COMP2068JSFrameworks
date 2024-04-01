@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+var express = require('express');
+var app = express();
+
 
 // Database connection
 const database = () => {
@@ -10,9 +13,10 @@ const database = () => {
   try {
     mongoose.connect(
       "mongodb+srv://lizaesterque:Lizandra@cluster0.0im5keo.mongodb.net/Recipehub",
-      connectionParams
+      connectionParams,
+      console.log("Database connected")
     );
-    console.log("Database connected");
+    
   } catch (error) {
     console.error(error);
     console.log("Failed to connect to database");
@@ -25,15 +29,10 @@ database();
 
 
 // Express initialization
-var express = require('express');
-var app = express();
+// var express = require('express');
+// var app = express();
 
 // require('./insertRecipes')(app); -> this was used to add recipes to the database
-
-
-
-
-
 
 var createError = require('http-errors');
 var express = require('express');
@@ -47,10 +46,10 @@ var indexRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var recipesRouter = require('./routes/recipes');
 
-app.use('/recipes', recipesRouter);
+
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
@@ -63,8 +62,9 @@ app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname + '/views/partials'), (err) => {});
 
 
-
 app.set('view engine', 'hbs');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(logger('dev'));
@@ -73,6 +73,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/recipes', recipesRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
