@@ -30,9 +30,7 @@ var app = express();
 
 // require('./insertRecipes')(app); -> this was used to add recipes to the database
 
-app.listen(8000, () => {
-  console.log('Server is running on port 8000');
-});
+
 
 
 
@@ -47,8 +45,16 @@ var hbs = require('hbs');
 
 var indexRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
+var recipesRouter = require('./routes/recipes');
 
-// var app = express();
+app.use('/recipes', recipesRouter);
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
 
 
 
