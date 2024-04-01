@@ -8,12 +8,14 @@
     <title>Recipes List</title>
 </head>
 <body>
+    <a href="/recipes/add" class="add-recipe-button">Add New Recipe</a>
     <h1>Recipes List</h1>
     <ul>
         {{#each recipes}}
             <li><a href="/recipes/{{ this._id }}">{{ this.title }}</a></li>
         {{/each}}
     </ul>
+
 </body>
 </html>
 
