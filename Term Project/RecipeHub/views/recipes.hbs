@@ -8,6 +8,11 @@
 </head>
 <body>
     <a href="/recipes/add" class="add-recipe-button">Add New Recipe</a>    
+    <form action="/recipes/search" method="GET">
+  <input type="text" name="searchQuery" placeholder="Search recipes by title...">
+  <button type="submit">Search</button>
+</form>
+
     <h1>Recipes List</h1>
     <ul>
         {{#each recipes}}

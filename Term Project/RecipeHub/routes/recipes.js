@@ -3,6 +3,26 @@ var router = express.Router();
 const Recipe = require('../models/recipe');
 const AuthenticationMiddleware = require ("../extension/authentication");
 
+
+//Router get to handle the search
+router.get('/search', async (req, res) => {
+  try {
+    const searchQuery = req.query.searchQuery;
+    if (!searchQuery) {
+      // If no search query is provided, return an empty result
+      return res.render('recipes', { recipes: [] });
+    }
+    const searchResult = await Recipe.find({
+      title: { $regex: searchQuery, $options: 'i' }
+    });
+    res.render('recipes', { recipes: searchResult });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred while searching');
+  }
+});
+
+
 // Display the form for adding a new recipe
 router.get('/add', AuthenticationMiddleware, (req, res) => {
   res.render('addRecipe'); 
@@ -15,7 +35,7 @@ router.post('/add',AuthenticationMiddleware, async (req, res) => {
       // Create a new recipe in the database
       const newRecipe = new Recipe({
           title,
-          ingredients: ingredients.split(',').map(ingredient => ingredient.trim()), // Assuming ingredients are comma-separated
+          ingredients: ingredients.split(',').map(ingredient => ingredient.trim()), // ingredients are comma-separated
           instructions,
           imageUrl
       });
@@ -78,6 +98,7 @@ router.get('/', async (req, res, next) => {
 });
 
 
+
 // Route to handle displaying recipe details
 router.get('/:recipeId', async (req, res) => {
   try {
@@ -91,6 +112,9 @@ router.get('/:recipeId', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
+
 
 
 
