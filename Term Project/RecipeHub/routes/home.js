@@ -70,6 +70,13 @@ User.register(
 
 });
 
+//GET /LOGOUT
+router.get("/logout",(req,res,next) => {
+   req.logout((err)=> {
+      res.redirect("/login");
+   });
+});
+
 module.exports = router;
 
 
