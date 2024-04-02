@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
 
 
 // GET /login
-
 router.get("/login", (req, res, next) => {
 // res.render('login', { title: 'Login' });
 // Obtain session messages if any
@@ -76,6 +75,22 @@ router.get("/logout",(req,res,next) => {
       res.redirect("/login");
    });
 });
+
+
+//GET hadle for github
+router.get(
+   "/github",
+   passport.authenticate("github",{scope:["user.email"]})
+);
+
+//get for github callback
+router.get(
+   "/github/callback",
+   passport.authenticate("github",{failureRedirect:"/login"}),
+   (req,res,next)=>{
+      res.redirect("/recipes");
+   }
+);
 
 module.exports = router;
 

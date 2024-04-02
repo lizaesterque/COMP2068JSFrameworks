@@ -4,6 +4,14 @@ var app = express();
 var User= require('./models/user');
 
 
+var GitHubStrategy= require('passport-github2').Strategy;
+
+var configs = require('../RecipeHub/configs/globals');
+
+// var acess_token=""
+
+
+
 // Database connection
 const database = () => {
   const connectionParams = {
@@ -49,6 +57,8 @@ var hbs = require('hbs');
 var indexRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var recipesRouter = require('./routes/recipes');
+const { config } = require("dotenv");
+const { db } = require("./models/recipe");
 
 
 
@@ -80,7 +90,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //configure passport module express-session
 app.use(session({
   secret:'key123',
-  resave:false,
+  resave:true,
   saveUninitialized:false
 }));
 
@@ -91,9 +101,42 @@ app.use(passport.session());
 //link the passport to the user model
 passport.use(User.createStrategy());
 
+//gitub strategy 
+passport.use(new GitHubStrategy(
+  {
+  clientID:configs.github.clientID,
+  clientSecret:configs.github.clientSecret,
+  callbackURL: configs.github.callbackUrl,
+},
+async(accessToken,refreshToken, profile, done)=>{
+//serach bt ID
+const user= await User.findOne({oauth:profile.id});
+if (user) {
+  return done(null,user);
+}   
+  else{
+    // new user register in db
+    const newUser= new User ({
+      username:profile.username,
+      oauthId:profile.id,
+      oauthprovider: 'Github',
+      created: Date.now()
+    });
+    //add to mongodb
+    const saveUser=await newUser.save();
+    return done(null, saveUser);
+  }
+}
+
+
+
+));
+
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//routing config
 app.use('/recipes', recipesRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
