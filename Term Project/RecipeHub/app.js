@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 var express = require('express');
 var app = express();
+var User= require('./models/user');
 
 
 // Database connection
@@ -25,6 +26,9 @@ const database = () => {
 
 // Call the database function to establish connection
 database();
+
+var passport = require('passport');
+var session = require('express-session');
 
 
 
@@ -72,6 +76,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//configure passport module express-session
+app.use(session({
+  secret:'key123',
+  resave:false,
+  saveUninitialized:false
+}));
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//link the passport to the user model
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use('/recipes', recipesRouter);
 app.use('/', indexRouter);
