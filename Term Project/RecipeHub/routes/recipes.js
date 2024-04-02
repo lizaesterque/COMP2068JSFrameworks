@@ -47,6 +47,7 @@ router.post('/add',AuthenticationMiddleware, async (req, res) => {
   }
 });
 
+// get to handle the edit with middleware to allow only users
 router.get('/edit/:recipeId', AuthenticationMiddleware, async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.recipeId);
@@ -90,7 +91,7 @@ router.post('/delete/:recipeId', AuthenticationMiddleware, async (req, res) => {
 });
 
 
-
+//router to open the page
 router.get('/', async (req, res, next) => {
   const recipes = await Recipe.find({});
   console.log(recipes); // Log fetched recipes

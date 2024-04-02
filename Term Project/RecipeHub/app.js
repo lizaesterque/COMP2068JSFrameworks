@@ -1,16 +1,18 @@
+//Import required
+
 const mongoose = require("mongoose");
 var express = require('express');
-var app = express();
 var User= require('./models/user');
-
-
 var GitHubStrategy= require('passport-github2').Strategy;
-
 var configs = require('../RecipeHub/configs/globals');
+var passport = require('passport');
+var session = require('express-session');
 
-// var acess_token=""
 
-
+//Initialize Express app
+var app = express();
+//serve static files from the public directory - > for style.css
+app.use(express.static('public'));
 
 // Database connection
 const database = () => {
@@ -34,15 +36,6 @@ const database = () => {
 
 // Call the database function to establish connection
 database();
-
-var passport = require('passport');
-var session = require('express-session');
-
-
-
-// Express initialization
-// var express = require('express');
-// var app = express();
 
 // require('./insertRecipes')(app); -> this was used to add recipes to the database
 
@@ -74,10 +67,7 @@ app.listen(PORT, () => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname + '/views/partials'), (err) => {});
-
-
 app.set('view engine', 'hbs');
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -125,14 +115,9 @@ if (user) {
     //add to mongodb
     const saveUser=await newUser.save();
     return done(null, saveUser);
-  }
-}
+  }}));
 
-
-
-));
-
-
+// Serialize and deserialize user for passport session
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -157,4 +142,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//Export the express app
 module.exports = app;
