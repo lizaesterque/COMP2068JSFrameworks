@@ -1,4 +1,13 @@
-<h1> Login</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+<div class="login-body">
+<h4>Login</h4>
 
 {{!-- Show error message if credentials are incorrect --}}
 {{#if messages}}
@@ -21,11 +30,14 @@
         <input name="password" id="password" type="password" required />
     </fieldset>
     <fieldset class="form-group">
-        <button class="btn btn-info offset-3"> Login</button>
+        <button class="btn">Login</button>
     </fieldset>
     <fieldset class="form-group">
-        <a class="btn btn-info offset-3" href="/github">Login with Github</a>
+        <a class="btn2" href="/github">Login with Github</a>
     </fieldset>
     <hr /> Need an account?
     <a href="/register" title="Register">Register</a>
 </form>
+</div>
+</body>
+</html>

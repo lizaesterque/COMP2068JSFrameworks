@@ -27,6 +27,8 @@ res.render("login", { title: "Login", messages: messages });
 // POST /login
 // Syntax will be a bit different since login will be handled by passport
 
+
+
 router.post("/login",
 passport.authenticate("local", {
    successRedirect: "/recipes",
@@ -54,7 +56,7 @@ User.register(
    req.body.password,
    (err, newUser) => {
    if (err) {
-      console.log(err);
+      console.log(err);      
       // take user back and reload register page
       return res.redirect("/register");
    } else {

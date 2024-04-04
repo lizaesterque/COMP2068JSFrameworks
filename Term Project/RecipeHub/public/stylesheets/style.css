@@ -266,7 +266,7 @@ a.site-nav::after {
 
 /* recipes page */
 
-.add-recipe-button {
+.add-recipe-button, .btn2 {
   display: inline; /* Change display to inline */
   padding: 0.5rem 1rem; /* Adjust padding as needed */
   background-size: auto; /* Set background size to auto */
@@ -284,7 +284,7 @@ form {
 }
 
 input[type="text"],
-button[type="submit"],button[type="button"], .print {
+button[type="submit"],button[type="button"], .print, .btn  {
   padding: 10px;
   border-radius: 10px;
   color: rgb(250, 226, 185);
@@ -356,7 +356,7 @@ a.add-recipe-button:hover {
 
 /* add and edit recipe page  */
 
-.add-body,.edit-body,.info-body{
+.add-body,.edit-body,.info-body,.login-body, .register-body{
   margin-top: 5%;
   display: flex;
   flex-direction: column;
@@ -455,4 +455,68 @@ h3 {
   1px 15px 10px rgba(16, 16, 16, 0.4),
   1px 20px 30px rgba(234, 141, 36, 0.3),
   1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+/* login and resgister page  */
+
+.form-group {
+  margin-left: 0%;
+  margin-top: 25px;
+  height: 40px;
+  width: 300px;
+border:none;
+}
+
+
+.btn {
+  margin-left: 20%;
+  margin-bottom: 3%;
+  margin-top: 0%;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+h4 {
+  margin-left: 0%;
+  color: #0d0802;
+  font-size: 2.5rem;
+	text-transform: uppercase;  
+   width: 450px;
+  height: 45px; 
+  justify-content: center;
+  margin-bottom: 2%;
+  text-shadow: 1px 1px 1px #957dad,
+  1px 2px 1px #f17a12,
+  1px 3px 1px #f9f0f0,
+  1px 4px 1px #e4922d,
+  1px 5px 1px #0d0d0d,
+  1px 6px 1px #f2f1f4,
+  1px 10px 5px rgba(253, 124, 33, 0.5),
+  1px 15px 10px rgba(16, 16, 16, 0.4),
+  1px 20px 30px rgba(234, 141, 36, 0.3),
+  1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+.login-body,.register-body {
+ 
+  height: 500px;
+  width: 550px;
+  margin-left: 3%;
+  
 }
