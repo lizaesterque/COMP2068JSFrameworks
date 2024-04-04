@@ -8,11 +8,12 @@ body {
   font-family: "Raleway", sans-serif;  
    height: 100%;
     margin: 0;    
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://www.yorku.ca/foodservices/wp-content/uploads/sites/50/2022/09/Copy-of-Diet.png');
+    background-image: linear-gradient(rgba(235, 229, 229, 0.808), rgba(207, 208, 246, 0.8)), url('https://www.yorku.ca/foodservices/wp-content/uploads/sites/50/2022/09/Copy-of-Diet.png');
     background-size: cover;
     background-position: center;
     background-repeat: repeat; 
     min-height: 100vh;
+    
   
   
 }
@@ -319,6 +320,7 @@ a.add-recipe-button:hover {
   justify-content: center; /* Horizontally center the content */
    /* Vertically center the content */
     text-align: center; 
+    background-color: rgba(230, 111, 42, 0.4)
 }
 
 .table {
@@ -352,3 +354,62 @@ a.add-recipe-button:hover {
 }
 
 
+/* add recipe page  */
+
+.add-body,.edit-body{
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: center;
+  margin-left: 20%;
+
+}
+
+h2 {
+  color: #c28127;
+  font-size: 2.5rem;
+	text-transform: uppercase;
+  margin-left: -10%;
+  margin-top: 5%;
+  background-color: #fff;
+  width: 450px;
+  height: 45px; 
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+#ingredients,
+#instructions {
+    width: 60rem; /* Adjusts the width to fill the container */
+    height: 8rem; /* Sets a fixed height */
+    padding: 10px; /* Adds some padding inside the textareas */
+    box-sizing: border-box; /* Ensures padding does not add to the overall dimensions */
+    margin-top: 5px; /* Adds some space above the textareas */
+}
+
+input[type="text"], textarea {
+    width: calc(30% - 10px); /* Adjusts width, accounting for padding */
+    display: block; /* Makes the input fields block elements to fill the width of their container */
+    margin-bottom: 20px; /* Adds space below each input/textarea */
+}
+
+/* about us page */
+
+h3 {
+  margin-top: 8%; 
+  font-size: 50px;
+  margin-bottom: 3%;
+  margin-left: 43%;
+  color: #eeeaea;
+  text-shadow: 1px 1px 1px #000;
+  background-image: linear-gradient(45deg, #d5571c, #1a66d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-para {
+  font-size: 160%;
+  margin-left: 4%; 
+}
