@@ -7,25 +7,33 @@
   
 </head>
 <body>
+    <div class="body-recipe">
     <a href="/recipes/add" class="add-recipe-button">Add New Recipe</a>    
     <form action="/recipes/search" method="GET">
   <input type="text" name="searchQuery" placeholder="Search recipes by title...">
   <button type="submit">Search</button>
-</form>
-
-    <h1>Recipes List</h1>
-    <ul>
+</form>    
+<h1 class="list-name">Recipes List</h1>
+    <table class="table">
+       
+    <thead>       
+    </thead>
+    <tbody>
         {{#each recipes}}
-            <li><a href="/recipes/{{ this._id }}">{{ this.title }}</a>
-            <button type="submit" onclick="location.href='/recipes/edit/{{ this._id }}'">Edit</button>
-           <form action="/recipes/delete/{{ this._id }}" method="POST" class="delete-form" onsubmit="return confirmDelete()">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
-            </li>
-           
+            <tr>
+                <td><a href="/recipes/{{ this._id }}">{{ this.title }}</a></td>
+                <td class="action-buttons">
+                    <button type="button" onclick="location.href='/recipes/edit/{{ this._id }}'">Edit</button>
+                    <form action="/recipes/delete/{{ this._id }}" method="POST" class="delete-form" onsubmit="return confirmDelete()">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                </td>
+            </tr>
         {{/each}}
-    </ul>
+    </tbody>
+</table>
+    </div>
 
    <script>
         function confirmDelete() {
