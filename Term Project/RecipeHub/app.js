@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 var express = require('express');
 var User= require('./models/user');
 var GitHubStrategy= require('passport-github2').Strategy;
-var configs = require('../RecipeHub/configs/globals');
+var configs = require('./configs/globals');
 var passport = require('passport');
 var session = require('express-session');
 
@@ -56,7 +56,7 @@ const { db } = require("./models/recipe");
 
 
 // Start the server
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
