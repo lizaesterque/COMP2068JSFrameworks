@@ -6,16 +6,20 @@
     <title>{{ recipe.title }}</title>
 </head>
 <body>
-    <h1>{{ recipe.title }}</h1>
-    <img src="{{ recipe.imageUrl }}" alt="{{ recipe.title }}">
+    <div class="info-body">
+    <h1 class="title-recipe">{{ recipe.title }}</h1>    
     <h2>Ingredients</h2>
     <ul>
         {{#each recipe.ingredients}}
-            <li>{{ this }}</li>
+            <li class="ingredients">{{ this }}</li>
         {{/each}}
     </ul>
     <h2>Instructions</h2>
-    <p>{{ recipe.instructions }}</p>
-    <button onclick="window.print()">Print Recipe</button>
+    <p class="instructions">{{ recipe.instructions }}</p>
+    <div class="image-container">
+    <img src="{{ recipe.imageUrl }}" alt="{{ recipe.title }}">
+    </div>
+</div>
+    <button class="print" onclick="window.print()">Print Recipe</button>
 </body>
 </html>
