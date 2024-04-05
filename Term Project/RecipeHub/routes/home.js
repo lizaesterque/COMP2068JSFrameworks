@@ -30,7 +30,7 @@ res.render("login", { title: "Login", messages: messages });
 
 
 router.post("/login",
-passport.authenticate("local", {
+passport.authenticate("", {
    successRedirect: "/recipes",
    failureRedirect: "/login",
    failureMessage: "Invalid credentials",
